@@ -27,3 +27,15 @@ export const SubTitle = styled.Text`
 `;
 
 export const MealsList = styled.FlatList``;
+
+export const ButtonWrapper = styled.TouchableOpacity`
+  height: 40;
+  background-color: #3ec28f;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10;
+`;
+
+export const ButtonText = styled.Text`
+  color: #fff;
+`;

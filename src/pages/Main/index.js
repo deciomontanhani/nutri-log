@@ -2,12 +2,22 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 
 import {
-  Container, Content, Title, SubTitle, MealsList,
+  Container,
+  Content,
+  Title,
+  SubTitle,
+  MealsList,
+  ButtonWrapper,
+  ButtonText,
 } from './styles';
 import MealsItem from './components/MealsItem';
 import Meal from '~/models/Meal';
 
 class Main extends React.Component {
+  static navigationOptions = {
+    title: 'Nutri Log',
+  };
+
   state = {
     meals: [
       new Meal(1, '08:25h', 'Lanche Integral', 'Feliz e saciado'),
@@ -19,8 +29,6 @@ class Main extends React.Component {
   navigationOptions = {
     title: 'Nutri Log',
   };
-
-  keyExtractor = (item, _) => String(item.id);
 
   renderItem = ({ item }) => <MealsItem {...item} />;
 
@@ -39,6 +47,9 @@ class Main extends React.Component {
             renderItem={this.renderItem}
           />
         </Content>
+        <ButtonWrapper>
+          <ButtonText>Adicionar uma nova comida</ButtonText>
+        </ButtonWrapper>
       </Container>
     );
   }
