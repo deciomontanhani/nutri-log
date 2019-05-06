@@ -1,6 +1,10 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import MealsActions from '~/store/ducks/meals';
+
 import {
   Container,
   Content,
@@ -30,10 +34,12 @@ class Main extends React.Component {
     title: 'Nutri Log',
   };
 
-  renderItem = ({ item }) => <MealsItem {...item} />;
+  renderItem = ({ item }) => (
+    <MealsItem title={item.title} time={item.time} feeling={item.feeling} />
+  );
 
   render() {
-    const { meals } = this.state;
+    const { data } = this.props;
     return (
       <Container>
         <StatusBar backgroundColor="#D6E7E0" />
@@ -42,12 +48,12 @@ class Main extends React.Component {
           <SubTitle>Hoje você comeu:</SubTitle>
           <MealsList
             alwaysBounceVertical={false}
-            data={meals}
+            data={data.meals}
             keyExtractor={item => String(item.id)}
             renderItem={this.renderItem}
           />
         </Content>
-        <ButtonWrapper>
+        <ButtonWrapper onPress={() => null}>
           <ButtonText>Adicionar uma nova comida</ButtonText>
         </ButtonWrapper>
       </Container>
@@ -55,4 +61,13 @@ class Main extends React.Component {
   }
 }
 
-export default Main;
+const mapStateToProps = state => ({
+  data: state.meals,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(MealsActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Main);

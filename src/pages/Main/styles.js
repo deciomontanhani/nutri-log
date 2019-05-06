@@ -26,7 +26,10 @@ export const SubTitle = styled.Text`
   font-size: 18;
 `;
 
-export const MealsList = styled.FlatList``;
+export const MealsList = styled.FlatList.attrs({})`
+  margin-top: 20;
+  margin-bottom: 20;
+`;
 
 export const ButtonWrapper = styled.TouchableOpacity`
   height: 40;
